@@ -2,6 +2,8 @@ import cv2
 
 class Camera:
     def __init__(self,device = 0,width=680,height=480): 
+
+        print("...........Camera--Initialized............")
         self.device =device
         self.width = width
         self.heigth = height
@@ -14,8 +16,9 @@ class Camera:
         self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT,height)
         print("Camera Opened")
     
-    def read(self):
+    def read(self,flip=1):
         success , frame = self.capture.read()
+        frame = cv2.flip(frame,flip)
         if not success:
             raise Exception("Unable to read frame !!!")
         

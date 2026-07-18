@@ -5,10 +5,12 @@ import pyautogui
 
 from hand_detector import HandDetector
 from camera import Camera
+from gestures import Gestures
 
 camera = Camera()
 
 pyautogui.FAILSAFE = False
+play = True
 
 detector = HandDetector()
 
@@ -31,25 +33,27 @@ while_run = True
 while while_run:
     frame  = camera.read()
 
-
-    rgbframe = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
     results = detector.findHands(frame)
-    L_fingers = []
-    R_fingers = []
     h,w,_ = frame.shape
     
     if results.multi_hand_landmarks:
-        for hand in results.multi_hand_landmarks:
-            # detector.mpDraw.draw_landmarks(frame,hand,detector.mphands.HAND_CONNECTIONS)
+        for hand,handedness in zip(results.multi_hand_landmarks,results.multi_handedness):
+
             detector.draw(frame,hand)
-            h,w,channels = frame.shape
 
             currentpos = hand.landmark[0]
             
-            detector.fcounts(hand,L_fingers,R_fingers)
-            detector.direction(currentpos,prevpoint)
+            L_fingers , R_fingers = detector.fcounts(hand,handedness)
+            movement = detector.direction(currentpos,prevpoint)
 
-            print(hand.landmark[0].z)
+            if R_fingers == [0,1,1,0,0]:
+                if play:
+                    pyautogui.press("playpause")
+                    play = False
+            else:
+                play = True
+            print(Gestures.GesturesDetect(L_fingers,R_fingers,movement))
+
             prevpoint = currentpos
     cv2.imshow("MyCamera",frame)
 
