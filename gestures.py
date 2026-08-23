@@ -8,7 +8,7 @@ class Gestures:
         elif sum(R_fingers) == 5 and movement == "Right":
             return "nexttrack"
         elif sum(L_fingers) == 5 and movement == "Left":
-            return "prevrtrack"
+            return "prevtrack"
         
             
 

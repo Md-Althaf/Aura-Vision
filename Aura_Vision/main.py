@@ -2,13 +2,15 @@ import cv2
 import mediapipe as mp
 import math 
 import pyautogui
+from Aura_Vision.controller import Controller
 
-from hand_detector import HandDetector
-from camera import Camera
-from gestures import Gestures
+from Aura_Vision.hand_detector import HandDetector
+from Aura_Vision.camera import Camera
+from Aura_Vision.gestures import Gestures
+url = "http://10.67.40.144:8080/video"
+camera = Camera(0)
 
-camera = Camera()
-
+controller = Controller()
 pyautogui.FAILSAFE = False
 play = True
 Gesture = Gestures()
@@ -26,10 +28,11 @@ def dis(p1,p2,h,w):
     dis = (x2-x1)**2 + (y2-y1)**2
     return int(math.sqrt(dis))
 
-prevpoint = None
-prevpointthumb = None
+prevhandL = None
+prevhandR = None
 ddis = 0
 while_run = True
+i = 0
 
 while while_run:
     frame  = camera.read()
@@ -41,25 +44,21 @@ while while_run:
         for hand,handedness in zip(results.multi_hand_landmarks,results.multi_handedness):
 
             detector.draw(frame,hand)
-
-            currentpos = hand.landmark[0]
-            
+            handtype = detector.handLorR(handedness)
+            direction = Gesture.directions(hand,handtype,8)
             L_fingers , R_fingers = detector.fcounts(hand,handedness)
-            movement = detector.direction(currentpos,prevpoint)
-            guess = Gesture.GesturesDetect(L_fingers,R_fingers,movement)
-
-            if guess is not None:
-                if play:
-                    pyautogui.press(guess)
-                    print(guess)
-                    play = False
+            handlora = detector.handLorR(handedness)
+            command = Gesture.GesturesDetect(L_fingers,R_fingers,direction)
+            if command == 'AR Cursor' and cursor:
+                cursor = False
             else:
-                play = True
-            
-            
-            
+                cursor = True
+                
+                Controller.cursor(hand)
+            controller.send(command)
+        
 
-            prevpoint = currentpos
+
     cv2.imshow("MyCamera",frame)
 
 
