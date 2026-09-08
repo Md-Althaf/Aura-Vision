@@ -1,4 +1,4 @@
-#Aura-Vision 
+## Aura-Vision 
 Ever wanted to control ur laptop like ironman using ur fingertip . 
 now u can using Aura Vision It uses open-Cv and python . 
 
@@ -10,8 +10,17 @@ now u can using Aura Vision It uses open-Cv and python .
 *Auto camera detection : automatically finds the working webcam
 *Easter egg : a hidden "rockstar mode" gesture that glitches the video feed plays the song
 
-##Setup
-bash git clone  cd aura vision phyton3 -m venv venv source venv/bin/activate pip install - r requirements.txt
-drop any "mp3" file into the project folder for easter egg and set the file name in config.json under party_song_path.
+## Setup
+
+## Requirements 
+*phyton 3.8+
+*webcam
+*Computer(Not potato Pc)
+
+## why I made this ?
+To control by laptop while eating,😅😅😅
+
+Made by - Md althaf alias Bose_Nova 
+
 
 
