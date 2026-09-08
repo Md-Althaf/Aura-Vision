@@ -39,27 +39,21 @@ class HandDetector():
 
         return L_fingers,R_fingers
 
-    def direction(self,currentpoint,prevpoint):
-         if prevpoint is not None:
-            
-                dx = currentpoint.x - prevpoint.x
-                dy = currentpoint.y - prevpoint.y
-                dx *=640
-                dy *=480
-                
-                Threshold = 50
-                if dx>Threshold:
-                    print("Left")
-                    return "Left"
-                elif dx<-Threshold:
-                    print("Right")
-                    return "Right"
-                elif dy>Threshold:
-                    print("Down")
-                    return "Down"
-                elif dy<-Threshold:
-                    print("Up")
-                    return "Up"
+    def direction(self, currentpoint, prevpoint, w=640, h=480, threshold=50):
+        if prevpoint is not None:
+            dx = (currentpoint.x - prevpoint.x) * w
+            dy = (currentpoint.y - prevpoint.y) * h
+
+            if dx > threshold:
+                return "Left"
+            elif dx < -threshold:
+                return "Right"
+            elif dy > threshold:
+                return "Down"
+            elif dy < -threshold:
+                return "Up"
+
+        return None
 
          
     
