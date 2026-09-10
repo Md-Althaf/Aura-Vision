@@ -9,7 +9,7 @@ import pygame
 
 from hand_detector import HandDetector
 from camera import Camera
-from gestures import Gesture
+from gestures import Gestures
 
 with open("config.json") as f:
     cfg = json.load(f)
@@ -18,6 +18,7 @@ camera = Camera(device=cfg["camera_device"], resolution=cfg["resolution"])
 pyautogui.FAILSAFE = False
 Gesture = Gestures()
 detector = HandDetector()
+
 pygame.mixer.init()
 
 screen_X, screen_Y = pyautogui.size()
@@ -57,7 +58,6 @@ FLIP = 1 if cfg["mirror_camera"] else 0
 
 smooth_x, smooth_y = screen_X / 2, screen_Y / 2
 party_mode_until = 0
-
 
 try:
     while True:
