@@ -19,5 +19,4 @@ class Gestures:
             return "party_mode"
 
         return None
-
-
+                           
