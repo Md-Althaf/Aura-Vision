@@ -9,9 +9,9 @@ def find_camera(max_index=5):
     return None
 
 class Camera:
-    def __init__(self,device = 0,width=680,height=480): 
-
+    def __init__(self, device="auto", resolution="auto"):
         print("...........Camera--Initialized............")
+
         if device == "auto":
             found = find_camera()
             if found is None:
@@ -43,10 +43,10 @@ class Camera:
         if flip:
             frame = cv2.flip(frame, 1)
         return frame
-        
+
     def release(self):
         self.capture.release()
+
     def isOpened(self):
         return self.capture.isOpened()
-    
-    
+            
