@@ -17,6 +17,10 @@ now u can using Aura Vision It uses open-Cv and python .
 *webcam
 *Computer(Not potato Pc)
 
+## How to use it 
+Download release fiel and just run .exe file 
+And make sure to put config file in same folder as .exe file and to change song change the song path from config file . 
+
 ## why I made this ?
 To control by laptop while eating,😅😅😅
 
