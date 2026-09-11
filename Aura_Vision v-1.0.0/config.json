@@ -1,0 +1,10 @@
+{
+  "camera_device": "auto",
+  "resolution": "auto",
+  "mirror_camera": true,
+  "gesture_sensitivity": 50,
+  "click_sensitivity": 35,
+  "gesture_delay_seconds": 1.0,
+  "cursor_smoothness": 0.5,
+  "party_song_path": "party.mp3"
+}
