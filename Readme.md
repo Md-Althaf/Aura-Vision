@@ -48,14 +48,14 @@ If you don't want to install Python or the dependencies, you can use the pre-bui
    party.mp3
 5. Run the ".exe" file.
 
-«Note: If your song has a different name or is located in another directory, update the song path in the "config" file accordingly.»
+Note: If your song has a different name or is located in another directory, update the song path in the "config" file accordinly.
 
 Folder Structure
 
 Your folder should look something like this:
 
-YourApp/
-├─ application.exe
+Aura_Vision/
+├─ AuraVision.exe
 ├─ config
 |--party.mp3
 
