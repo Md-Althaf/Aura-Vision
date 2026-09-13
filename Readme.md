@@ -35,7 +35,7 @@ cd <repository-folder>
 
 4. Run the application:
    
-   python <your-script>.py
+   python main.py
 
 ### Option 2: Use the Executable Release
 
@@ -55,9 +55,9 @@ Folder Structure
 Your folder should look something like this:
 
 YourApp/
-├── application.exe
-├── config
-└── party.mp3
+├─ application.exe
+├─ config
+|--party.mp3
 
 Once everything is in place, simply run the executable.
 
